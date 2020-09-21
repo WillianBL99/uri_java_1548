@@ -1,0 +1,64 @@
+import java.io.IOException;
+import java.util.Scanner;
+/**
+ * @author Paulo Uilian
+ * @date 21/09/2020
+ * @title fila de cantina
+ */
+public class Main {
+ 
+    public static void main(String[] args) throws IOException {
+ 
+       Scanner input = new Scanner(System.in);
+	   
+	   // recebe a quantidade de casos a serem testados
+	   int numeroCasos = input.nextInt();
+	   
+	   int qtAlunos;
+	   int alteracao;
+	   int notaAuxiliar;
+	   
+	   // recebe a quantidade de alunos
+	   for(int countCasos = 0; countCasos < numeroCasos; countCasos++){
+		
+			qtAlunos = input.nextInt();
+			int[] notas = new int[qtAlunos];
+			int[] notasOrganizadas = new int[qtAlunos];
+			
+			// recebe a nota de cada aluno
+			for(int countNotas = 0; countNotas < qtAlunos; countNotas++){				
+				notas[countNotas] = input.nextInt();
+				notasOrganizadas[countNotas] = notas[countNotas];
+			}
+			
+			
+			// reorganiza a sequencia de notas do vertor 'notas' no vetor 'notasOrganizadas'
+			alteracao = 0;			
+			
+			for(int c1 = 0; c1 < notas.length; c1++){				
+				for(int c2 = 0 + c1; c2 < notas.length; c2++){
+					
+					if(notasOrganizadas[c1] < notasOrganizadas[c2]){
+						notaAuxiliar = notasOrganizadas[c1];
+						notasOrganizadas[c1] = notasOrganizadas[c2];
+						notasOrganizadas[c2] = notaAuxiliar;
+					}
+				}
+			}
+			
+			
+			// verifica a quantidade de numeros que continuaram no mesmo index em notas e notasOrganizadas
+			for(int x = 0; x < notas.length; x++) {
+				if(notas[x] == notasOrganizadas[x]) {
+					alteracao++; // a cada valor igual acrescenta um à alteracao
+				}
+			}
+			
+			// saída da quantidade de números que não sairam da sua posição
+			System.out.println(alteracao);
+	   }
+	   
+ 
+    }
+ 
+}
